@@ -430,17 +430,19 @@ p { color: var(--text-muted); }
 .portrait-placeholder {
   width: 240px;
   height: 300px;
-  background: var(--bg-card);
+  background: var(--bg-card); /* Fallback, falls Bild nicht lädt */
   border: 2px solid var(--border);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-size: 4rem;
-  font-weight: 900;
-  color: var(--amber);
-  /* Replace with: background-image: url('/assets/img/portrait.jpg'); background-size: cover; */
+
+  /* --- HIER DEIN BILD EINFÜGEN --- */
+  background-image: url('/assets/img/portrait.jpg'); 
+  background-size: cover;        /* Füllt den Bereich komplett aus */
+  background-position: center;   /* Zentriert das Gesicht im Rahmen */
+  color: transparent;            /* Versteckt den alten Platzhalter-Text (z.B. deine Initialen) */
+  font-size: 0;                  /* Zusätzliche Sicherheit, um Text zu verstecken */
 }
 
 .portrait-badge {
