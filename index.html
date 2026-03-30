@@ -111,97 +111,33 @@ description: "Wirtschaftsinformatik-Student, Gründer und Entwickler aus Schmalk
     </div>
     <div class="timeline">
 
-      <div class="timeline-item" data-year="Aktuell">
+      {% assign stationen_list = "" | split: "" %}
+      {% for item in site.data.stationen %}
+        {% assign stationen_list = stationen_list | push: item[1] %}
+      {% endfor %}
+      {% assign stationen_sorted = stationen_list | sort: "reihenfolge" %}
+
+      {% for station in stationen_sorted %}
+      <div class="timeline-item">
+        {% if station.aktuell %}
         <div class="timeline-dot active"></div>
+        {% else %}
+        <div class="timeline-dot"></div>
+        {% endif %}
         <div class="timeline-content">
-          <span class="timeline-period">2024 – heute</span>
-          <h3>Gründung Einzelunternehmen</h3>
-          <p>Aufbau meiner Selbständigkeit als Entwickler und IT-Dienstleister. Spezialisierung auf
-          statische Jekyll-Webseiten, PostgreSQL-Schnittstellen und Open-Source-BI-Lösungen für KMU.</p>
+          <span class="timeline-period">{{ station.zeitraum }}</span>
+          <h3>{{ station.titel }}</h3>
+          <p>{{ station.beschreibung }}</p>
+          {% if station.tags and station.tags.size > 0 %}
           <div class="timeline-tags">
-            <span>Jekyll</span><span>PostgreSQL</span><span>Metabase</span><span>Netlify</span>
+            {% for tag in station.tags %}
+            <span>{{ tag }}</span>
+            {% endfor %}
           </div>
+          {% endif %}
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-period">2024 – 2025 · 10 Monate</span>
-          <h3>Assistenz der Niederlassungsleitung · Bofrost, Suhl</h3>
-          <p>Unterstützung der Betriebsleitung in administrativen und organisatorischen Aufgaben.
-          Einblick in kaufmännische Prozesse und betriebliche Abläufe eines mittelständischen Unternehmens –
-          parallel zum Studium.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-period">2023 – heute</span>
-          <h3>Studium Wirtschaftsinformatik · HS Schmalkalden</h3>
-          <p>Wechsel in den Studiengang Wirtschaftsinformatik für mehr technische Tiefe. Fokus auf
-          Datenbankmanagement, Softwareentwicklung und betriebliche Informationssysteme.</p>
-          <div class="timeline-tags">
-            <span>SQL</span><span>Java</span><span>JavaScript</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-period">2022 – 2023 · 2 Semester</span>
-          <h3>Studium Digital Business & Produktinnovation · Göttingen</h3>
-          <p>Einstieg ins Hochschulstudium mit Schwerpunkt digitale Transformation und Produktentwicklung.
-          Entscheidung für einen technisch tieferen Studiengang um die Digitalisierung aktiv mitgestalten
-          zu können, nicht nur zu beschreiben.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-period">ca. 2021 – 2022</span>
-          <h3>Abitur · Fachrichtung Wirtschaft · München</h3>
-          <p>Abschluss mit der Note <strong>Gut</strong>. Zweiter Bildungsweg mit Fokus auf
-          wirtschaftswissenschaftliche Grundlagen als Fundament für das spätere Studium.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-period">2014 – 2022 · 8 Jahre</span>
-          <h3>Soldat auf Zeit · Streitkräftebasis (SKB) · Bundeswehr</h3>
-          <p>Vielseitige Tätigkeit in der Militärlogistik: Gefahrgutbeauftragter, Militärkraftfahrer,
-          Disponent, Ausbilder und Gruppenführer. Verantwortung für Menschen und Prozesse in einem
-          hochstrukturierten Umfeld.</p>
-          <div class="timeline-tags">
-            <span>Führung</span><span>Logistik</span><span>Gefahrgut</span><span>Ausbildung</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-period">ca. 2011 – 2014 · 3 Jahre</span>
-          <h3>CNC-Maschinenbediener</h3>
-          <p>Bedienung und Überwachung von CNC-Maschinen in der Fertigungsindustrie.
-          Präzisionsarbeit und technisches Verständnis für automatisierte Produktionsprozesse.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-period">Ausbildung</span>
-          <h3>Maler und Lackierer · Fachrichtung Gestaltung und Instandhaltung</h3>
-          <p>Handwerkliche Ausbildung als Grundlage. Ästhetisches Verständnis, präzise Arbeitsweise
-          und Qualitätsbewusstsein – Werte, die meine gesamte Arbeit bis heute prägen.</p>
-        </div>
-      </div>
+      {% endfor %}
 
     </div>
   </div>
@@ -218,57 +154,37 @@ description: "Wirtschaftsinformatik-Student, Gründer und Entwickler aus Schmalk
     </div>
     <div class="services-grid">
 
-      <div class="service-card service-card--featured">
+      {% assign leistungen_list = "" | split: "" %}
+      {% for item in site.data.leistungen %}
+        {% assign leistungen_list = leistungen_list | push: item[1] %}
+      {% endfor %}
+      {% assign leistungen_sorted = leistungen_list | sort: "reihenfolge" %}
+
+      {% for leistung in leistungen_sorted %}
+      <div class="service-card{% if leistung.featured %} service-card--featured{% endif %}">
         <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          {% case leistung.icon %}
+          {% when "web" %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          {% when "database" %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          {% when "api" %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m10 0h3a2 2 0 0 0 2-2v-3"/><circle cx="12" cy="12" r="3"/></svg>
+          {% when "shield" %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          {% endcase %}
         </div>
-        <h3>Statische Webseiten mit Jekyll</h3>
-        <p>Blitzschnelle, sichere und wartungsarme Webseiten auf Basis von Jekyll. Kein CMS-Overhead,
-        keine Datenbank-Angriffsfläche. Über Git versioniert und auf Wunsch per <strong>Netlify CMS</strong>
-        direkt im Browser bearbeitbar – ganz ohne Programmierkenntnisse.</p>
+        <h3>{{ leistung.titel }}</h3>
+        <p>{{ leistung.beschreibung }}</p>
+        {% if leistung.features and leistung.features.size > 0 %}
         <ul class="service-features">
-          <li>Jekyll + Git-basiertes Hosting</li>
-          <li>Netlify CMS für einfache Inhaltspflege</li>
-          <li>Individuelle Designs, kein Template-Einheitsbrei</li>
-          <li>100 % unter deiner Kontrolle</li>
+          {% for feature in leistung.features %}
+          <li>{{ feature }}</li>
+          {% endfor %}
         </ul>
+        {% endif %}
       </div>
-
-      <div class="service-card service-card--featured">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-        </div>
-        <h3>All-in-One Buchhaltungslösung</h3>
-        <p>Deine Bank-CSV wird automatisch in eine <strong>PostgreSQL-Datenbank</strong> eingespeist.
-        Von dort werden die Daten buchungsgerecht aufbereitet und als CSV ausgegeben – kompatibel mit
-        <strong>Lexware</strong>, <strong>DATEV</strong> und ähnlichen Programmen. Dazu kommt
-        <strong>Metabase</strong> als BI-Tool für visuelle Auswertungen.</p>
-        <ul class="service-features">
-          <li>CSV-Import → PostgreSQL → CSV-Export</li>
-          <li>Kompatibel mit gängiger Buchhaltungssoftware</li>
-          <li>Metabase-Dashboard für Live-Auswertungen</li>
-          <li>Self-Hosted: Daten bleiben bei dir</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m10 0h3a2 2 0 0 0 2-2v-3"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3>Schnittstellenprogrammierung</h3>
-        <p>Von der Idee bis zur laufenden Schnittstelle. Ich verbinde deine bestehenden Systeme
-        und automatisiere manuelle Datenprozesse – sicher, nachvollziehbar und auf Open-Source-Basis.</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>DSGVO & Datensouveränität</h3>
-        <p>Alle Lösungen sind so konzipiert, dass Daten auf deinen eigenen Servern bleiben.
-        Kein Vendor-Lock-in, keine Cloud-Abhängigkeit. Höchste Datenschutzstandards durch
-        Open-Source-Tools die du selbst hostest.</p>
-      </div>
+      {% endfor %}
 
     </div>
 
@@ -292,50 +208,38 @@ description: "Wirtschaftsinformatik-Student, Gründer und Entwickler aus Schmalk
     </div>
     <div class="current-grid">
 
-      <div class="current-card">
-        <div class="current-card-header">
-          <div class="current-icon current-icon--yt">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </div>
-          <span class="current-status">In Produktion</span>
-        </div>
-        <h3>YouTube-Serie: Studium & Selbständigkeit</h3>
-        <p>Eine authentische Videoserie die zeigt, wie das Leben zwischen Hochschule, Unternehmensgründung
-        und echten Projekten aussieht. Kein Hochglanz-Content, sondern echte Einblicke in den Alltag
-        eines Gründers der gleichzeitig studiert.</p>
-        <a href="https://youtube.com/@edgebird-lab" target="_blank" rel="noopener" class="current-link">
-          Zum Kanal →
-        </a>
-      </div>
+      {% assign aktuelles_list = "" | split: "" %}
+      {% for item in site.data.aktuelles %}
+        {% assign aktuelles_list = aktuelles_list | push: item[1] %}
+      {% endfor %}
+      {% assign aktuelles_sorted = aktuelles_list | sort: "reihenfolge" %}
 
+      {% for projekt in aktuelles_sorted %}
       <div class="current-card">
         <div class="current-card-header">
-          <div class="current-icon current-icon--build">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <div class="current-icon current-icon--{{ projekt.kategorie }}">
+            {% case projekt.kategorie %}
+            {% when "yt" %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            {% when "build" %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            {% when "study" %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            {% else %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            {% endcase %}
           </div>
-          <span class="current-status">Im Aufbau</span>
+          <span class="current-status">{{ projekt.status }}</span>
         </div>
-        <h3>All-in-One Finanzlösung für KMU</h3>
-        <p>Ich entwickle eine vollständige Open-Source-Infrastruktur für kleine und mittlere Unternehmen:
-        Bank-CSV → PostgreSQL → Buchhaltungs-CSV → Metabase-BI. Das Einzige, was der Kunde benötigt,
-        ist eine Schnittstelle – den Rest hostet er selbst.</p>
-        <a href="#leistungen" class="current-link">
-          Mehr erfahren →
+        <h3>{{ projekt.titel }}</h3>
+        <p>{{ projekt.beschreibung }}</p>
+        {% if projekt.link_text and projekt.link_text != "" %}
+        <a href="{{ projekt.link_url }}" {% unless projekt.link_url contains "#" %}target="_blank" rel="noopener"{% endunless %} class="current-link">
+          {{ projekt.link_text }}
         </a>
+        {% endif %}
       </div>
-
-      <div class="current-card">
-        <div class="current-card-header">
-          <div class="current-icon current-icon--study">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          </div>
-          <span class="current-status">Laufend</span>
-        </div>
-        <h3>Studium Wirtschaftsinformatik</h3>
-        <p>Weiterhin im Studiengang Wirtschaftsinformatik an der Hochschule Schmalkalden mit Fokus auf
-        Datenbankmanagement, Softwareentwicklung und betriebliche IT-Systeme. Theorie und Praxis laufen
-        für mich immer parallel.</p>
-      </div>
+      {% endfor %}
 
     </div>
   </div>
@@ -385,7 +289,7 @@ description: "Wirtschaftsinformatik-Student, Gründer und Entwickler aus Schmalk
         </div>
       </div>
       <div class="contact-form-wrap">
-        <form class="contact-form" action="https://formspree.io/f/mvzvknqg" method="POST">
+        <form class="contact-form" action="https://formspree.io/f/DEINE_FORM_ID" method="POST">
           <div class="form-row">
             <div class="form-field">
               <label for="name">Name</label>
