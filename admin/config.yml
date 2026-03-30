@@ -116,12 +116,14 @@ collections:
       - { label: "Titel",   name: "titel",  widget: "string" }
       - { label: "Status",  name: "status", widget: "select",
           options: ["In Produktion", "Im Aufbau", "Laufend", "Abgeschlossen", "Geplant"] }
-      - { label: "Kategorie", name: "kategorie", widget: "select",
-          options:
-            - { label: "YouTube",    value: "yt" }
-            - { label: "Entwicklung", value: "build" }
-            - { label: "Studium",    value: "study" }
-            - { label: "Sonstiges",  value: "other" } }
+      - label: "Kategorie"
+        name: "kategorie"
+        widget: "select"
+        options:
+          - { label: "YouTube",     value: "yt" }
+          - { label: "Entwicklung", value: "build" }
+          - { label: "Studium",     value: "study" }
+          - { label: "Sonstiges",   value: "other" }
       - { label: "Beschreibung", name: "beschreibung", widget: "text" }
       - { label: "Link-Text",    name: "link_text",    widget: "string", required: false,
           hint: "z.B. Zum Kanal →" }
